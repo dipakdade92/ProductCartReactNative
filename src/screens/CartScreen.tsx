@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {FlatList, View, TouchableOpacity, StyleSheet, Text} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import ProductCard from '../components/ProductCard';
@@ -9,6 +9,9 @@ import constants from '../utils/constants';
 
 const CartScreen = ({route, navigation}: any) => {
   const {cartItems} = route.params;
+  const totalPrice = useMemo(() => {
+    return cartItems.reduce((sum: number, item: any) => sum + item.price, 0);
+  }, [cartItems]);
 
   const handleNavigationGoBack = () => {
     navigation.goBack();
@@ -41,6 +44,7 @@ const CartScreen = ({route, navigation}: any) => {
       <View style={styles.mainContainer}>
         {cartItems.length != 0 ? (
           <FlatList
+            showsVerticalScrollIndicator={false}
             style={styles.flatListMainWrapper}
             data={cartItems}
             renderItem={renderItem}
@@ -57,6 +61,12 @@ const CartScreen = ({route, navigation}: any) => {
           />
         )}
       </View>
+      {cartItems.length != 0 && (
+        <View style={styles.footerWrapper}>
+          <Text style={styles.totalPriceWrapper}>{constants.TOTAL_SPEND}</Text>
+          <Text style={styles.totalPriceWrapper}>${totalPrice}</Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -84,7 +94,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     width: wp(100),
-    height: hp(90),
+    height: hp(85),
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -96,11 +106,27 @@ const styles = StyleSheet.create({
   flatListMainWrapper: {
     alignSelf: 'center',
     width: wp(90),
-    height: hp(80),
+    height: hp(75),
   },
   noDataWrapper: {
     width: wp(30),
     height: wp(30),
+  },
+  footerWrapper: {
+    width: wp(90),
+    alignSelf: 'center',
+    height: wp(13),
+    borderRadius: wp(2),
+    backgroundColor: colors.SoftBlue,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: wp(5),
+    justifyContent: 'space-between',
+  },
+  totalPriceWrapper: {
+    fontSize: 18,
+    fontWeight: '500',
+    color: colors.White,
   },
 });
 

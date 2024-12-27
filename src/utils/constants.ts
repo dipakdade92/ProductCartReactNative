@@ -7,6 +7,7 @@ export default {
   PURCHASE: 'Purchase',
   CANCEL: 'Cancel',
   PURCHASE_PRODUCT: 'Purchased Product',
+  TOTAL_SPEND: 'Total Spend',
 };
 
 export const CARD_HEIGHT = 150;

@@ -27,7 +27,7 @@ const ProductRate = (props: ProductRateProps) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginLeft: 10,
+    marginLeft: 5,
     alignSelf: 'center',
   },
   imageWrapper: {

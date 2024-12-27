@@ -46,7 +46,7 @@ const ProductCard = (props: ProductProps) => {
           </Text>
           <View style={styles.productRatingWrapper}>
             <Text numberOfLines={1} style={styles.productRatingTextWrapper}>
-              {product.rating.rate}
+              {Math.floor(product.rating.rate)}
             </Text>
             <ProductRate rate={Math.floor(product.rating.rate)} />
           </View>

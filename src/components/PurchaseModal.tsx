@@ -33,7 +33,7 @@ const PurchaseModal = (props: PurchaseModalProps) => {
   }, [productDetail?.category, productDetail?.price]);
 
   return (
-    <Modal visible={visible} transparent={true} animationType="slide">
+    <Modal visible={visible} transparent={true} animationType="fade">
       <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
           <View style={styles.purchaseHeading}>
